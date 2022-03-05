@@ -6,7 +6,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: Rregular;
+  font-family: Rregular, Arial;
   color: var(--dark-gray);
 }
 
@@ -96,6 +96,15 @@ header {
 .hd-btn:hover,
 .hd-btn:active {
   background-color: hsl(0, 0%, 10%);
+}
+
+.error-msg {
+  position: absolute;
+  bottom: -2.5rem;
+  font-size: 1.5rem;
+  color: hsl(0, 100%, 50%);
+  right: 50%;
+  transform: translateX(50%);
 }
 
 .loc {

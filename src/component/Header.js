@@ -5,7 +5,7 @@ function Header() {
   const [display, setDisplay] = useState(false);
   const [data, setData] = useState("");
   const [ip, setIp] = useState("");
-  const [latlng, setLatlng] = useState("");
+  const [latlng, setLatlng] = useState([0, 0]);
   const [loading, setLoading] = useState(false);
   const elementRef = useRef(null);
 
@@ -21,6 +21,7 @@ function Header() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setData("");
     setLoading(true);
     const value = await fetch(`http://ipwhois.app/json/${ip}`).then((val) =>
       val.json()
@@ -28,7 +29,9 @@ function Header() {
     setLoading(false);
 
     setData(value);
-    setLatlng([value.latitude, value.longitude]);
+    value.success
+      ? setLatlng([value.latitude, value.longitude])
+      : setLatlng([0, 0]);
     setDisplay(true);
     setTimeout(changeHeight, 1);
   };
@@ -55,6 +58,7 @@ function Header() {
                 required
               />
               <span className={loading ? "loading" : ""}></span>
+              <p className="error-msg">{data.message}</p>
               <button type="submit" className="hd-btn">
                 <img src="./images/icon-arrow.svg" alt="Enter" />
               </button>
