@@ -23,7 +23,7 @@ function Header() {
     e.preventDefault();
     setData("");
     setLoading(true);
-    const value = await fetch(`http://ipwhois.app/json/${ip}`).then((val) =>
+    const value = await fetch(`https://ipwhois.app/json/${ip}`).then((val) =>
       val.json()
     );
     setLoading(false);
